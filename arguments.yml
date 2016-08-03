@@ -1,0 +1,69 @@
+name: zdict
+args:
+    - disable_db:
+        help: Temporarily not using the result from db cache. (still save the result into db)
+        long: disable-db-cache
+        short: d
+    - query_timeout:
+        help: Set timeout for every query. default is 5 seconds.
+        long: query-timeout
+        short: t
+        takes_value: true
+        value_name: QUERY_TIMEOUT
+    - jobs:
+        help: Allow N jobs at once. Do not pass any argument to use the number of CPUs in the system.
+        long: jobs
+        short: j
+        value_name: JOBS
+        takes_value: true   # FIXME, it's optional
+    - show_provider:
+        help: Show the dictionary provider of the queried word
+        long: show-provider
+        # short: sp   # FIXME, it has two characters
+    - show_url:
+        help: Show the url of the queried word
+        long: show-url
+        # short: su   # FIXME, it has two characters
+    - dict:
+        help: "Must be seperated by comma and no spaces after each comma. Choose the dictionary you want. (default: yahoo) Use 'all' for qureying all dictionaries. If 'all' or more than 1 dictionaries been chosen, --show- provider will be set to True in order to provide more understandable output."
+        long: dict
+        # short: dt   # FIXME, it has two characters
+        possible_values:
+            - urban
+            - yahoo
+            - jisho
+            - spanish
+            - moe
+            - all
+        default_value: yahoo
+    - list_dicts:
+        help: Show currently supported dictionaries.
+        long: list-dicts
+        # short: ld   # FIXME, it has two characters
+    - verbose:
+        help: Show more information for the queried word. (If the chosen dictionary have implemented verbose related functions)
+        long: verbose
+        short: V
+    - force_color:
+        help: Force color printing (zdict automatically disable color printing when output is not a tty, use this option to force color printing)
+        long: force-color
+        short: c
+    - dump:
+        help: Dump the querying history, can be filtered with regex
+        long: dump
+        value_name: PATTERN
+        takes_value: true   # FIXME, it's optional
+    - debug:
+        help: Print raw html prettified by BeautifulSoup for debugging.
+        long: debug
+        short: D
+    - help:
+        help: "show program's version number and exit"
+        long: help
+        short: h
+    - version:
+        help: "show program's version number and exit"
+        long: version
+        short: v
+    - words:
+        index: 1
